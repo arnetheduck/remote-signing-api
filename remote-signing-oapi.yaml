@@ -85,7 +85,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: AGGREGATION_SLOT
+                          enum:
+                            - AGGREGATION_SLOT
                         aggregation_slot:
                           type: object
                           properties:
@@ -95,7 +96,8 @@ paths:
                       required:
                         - type
                         - aggregation_slot
-                - allOf:
+                - description: '** DEPRECATED ** See AggregateAndProofSigningV2.'
+                  allOf:
                     - type: object
                       properties:
                         fork_info:
@@ -138,7 +140,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: AGGREGATE_AND_PROOF
+                          enum:
+                            - AGGREGATE_AND_PROOF
                         aggregate_and_proof:
                           type: object
                           properties:
@@ -223,10 +226,381 @@ paths:
                         - fork_info
                     - type: object
                       properties:
+                        aggregate_and_proof:
+                          oneOf:
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - PHASE0
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - ALTAIR
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - BELLATRIX
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - CAPELLA
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - DENEB
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                            - type: object
+                              properties:
+                                version:
+                                  type: string
+                                  enum:
+                                    - ELECTRA
+                                  description: version to identify AggregateAndProof request type.
+                                data:
+                                  type: object
+                                  properties:
+                                    aggregator_index:
+                                      type: string
+                                      format: uint64
+                                    aggregate:
+                                      type: object
+                                      properties:
+                                        aggregation_bits:
+                                          type: string
+                                        data:
+                                          type: object
+                                          properties:
+                                            slot:
+                                              type: string
+                                              format: uint64
+                                            index:
+                                              type: string
+                                              format: uint64
+                                            beacon_block_root:
+                                              type: string
+                                            source:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                            target:
+                                              type: object
+                                              properties:
+                                                epoch:
+                                                  type: string
+                                                root:
+                                                  type: string
+                                        signature:
+                                          type: string
+                                        committee_bits:
+                                          type: string
+                                    selection_proof:
+                                      type: string
+                                      description: Bytes96 hexadecimal
+                              required:
+                                - version
+                                - data
+                          discriminator:
+                            propertyName: version
+                            mapping:
+                              PHASE0: '#/components/schemas/AggregateAndProofRequestPhase0'
+                              ALTAIR: '#/components/schemas/AggregateAndProofRequestAltair'
+                              BELLATRIX: '#/components/schemas/AggregateAndProofRequestBellatrix'
+                              CAPELLA: '#/components/schemas/AggregateAndProofRequestCapella'
+                              DENEB: '#/components/schemas/AggregateAndProofRequestDeneb'
+                              ELECTRA: '#/components/schemas/AggregateAndProofRequestElectra'
+                      required:
+                        - aggregate_and_proof
+                    - type: object
+                      properties:
                         type:
                           type: string
                           description: Signing Request type
-                          example: ATTESTATION
+                          enum:
+                            - AGGREGATE_AND_PROOF_V2
+                      required:
+                        - type
+                - allOf:
+                    - type: object
+                      properties:
+                        fork_info:
+                          type: object
+                          properties:
+                            fork:
+                              description: Fork information
+                              type: object
+                              properties:
+                                previous_version:
+                                  pattern: '^0x[a-fA-F0-9]{8}$'
+                                  type: string
+                                  description: Previous version of fork
+                                  example: '0x00000001'
+                                current_version:
+                                  pattern: '^0x[a-fA-F0-9]{8}$'
+                                  type: string
+                                  description: Current version of fork
+                                  example: '0x00000001'
+                                epoch:
+                                  type: string
+                                  description: Epoch value in String format
+                                  format: uint64
+                                  example: '1'
+                            genesis_validators_root:
+                              type: string
+                              description: Genesis Validators Root in hex string format.
+                              example: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                          required:
+                            - fork
+                            - genesis_validators_root
+                        signingRoot:
+                          type: string
+                          description: signing root for optional verification if field present
+                          example: '0xaa2e0c465c1a45d7b6637fcce4ad6ceb71fc12064b548078d619a411f0de8adc'
+                      required:
+                        - fork_info
+                    - type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Signing Request type
+                          enum:
+                            - ATTESTATION
                         attestation:
                           type: object
                           properties:
@@ -299,7 +673,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: BLOCK
+                          enum:
+                            - BLOCK
                         block:
                           type: object
                           properties:
@@ -1186,13 +1561,17 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: BLOCK_V2
+                          enum:
+                            - BLOCK_V2
+                      required:
+                        - type
                 - type: object
                   properties:
                     type:
                       type: string
                       description: Signing Request type
-                      example: DEPOSIT
+                      enum:
+                        - DEPOSIT
                     signingRoot:
                       description: signing root for optional verification if field present
                       type: string
@@ -1254,7 +1633,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: RANDAO_REVEAL
+                          enum:
+                            - RANDAO_REVEAL
                         randao_reveal:
                           type: object
                           properties:
@@ -1307,7 +1687,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: VOLUNTARY_EXIT
+                          enum:
+                            - VOLUNTARY_EXIT
                         voluntary_exit:
                           type: object
                           properties:
@@ -1363,7 +1744,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: SYNC_COMMITTEE_MESSAGE
+                          enum:
+                            - SYNC_COMMITTEE_MESSAGE
                         sync_committee_message:
                           type: object
                           properties:
@@ -1419,7 +1801,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: SYNC_COMMITTEE_SELECTION_PROOF
+                          enum:
+                            - SYNC_COMMITTEE_SELECTION_PROOF
                         sync_aggregator_selection_data:
                           type: object
                           properties:
@@ -1475,7 +1858,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: SYNC_COMMITTEE_CONTRIBUTION_AND_PROOF
+                          enum:
+                            - SYNC_COMMITTEE_CONTRIBUTION_AND_PROOF
                         contribution_and_proof:
                           type: object
                           properties:
@@ -1512,7 +1896,8 @@ paths:
                         type:
                           type: string
                           description: Signing Request type
-                          example: VALIDATOR_REGISTRATION
+                          enum:
+                            - VALIDATOR_REGISTRATION
                         signingRoot:
                           description: signing root for optional verification if field present
                           type: string
@@ -1538,6 +1923,7 @@ paths:
                 mapping:
                   AGGREGATION_SLOT: ../schemas.yaml#/components/schemas/AggregationSlotSigning
                   AGGREGATE_AND_PROOF: ../schemas.yaml#/components/schemas/AggregateAndProofSigning
+                  AGGREGATE_AND_PROOF_V2: ../schemas.yaml#/components/schemas/AggregateAndProofSigningV2
                   ATTESTATION: ../schemas.yaml#/components/schemas/AttestationSigning
                   BLOCK: ../schemas.yaml#/components/schemas/BlockSigning
                   BLOCK_V2: ../schemas.yaml#/components/schemas/BeaconBlockSigning
@@ -1995,7 +2381,176 @@ paths:
                     genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
                   aggregation_slot:
                     slot: '119'
-              AGGREGATE_AND_PROOF:
+              AGGREGATE_AND_PROOF_V2 (ELECTRA):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x247535806f76143fe4798427b2a79b85340c1a029a9e08581995b60e4e45c9e0'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: ELECTRA
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x0000000000000000000000000000000000000000000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                        committee_bits: '0x0000000000000001'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF_V2 (DENEB):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: DENEB
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x00000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF_V2 (CAPELLA):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: CAPELLA
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x00000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF_V2 (BELLATRIX):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: BELLATRIX
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x00000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF_V2 (ALTAIR):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: ALTAIR
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x00000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF_V2 (PHASE 0):
+                value:
+                  type: AGGREGATE_AND_PROOF_V2
+                  signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
+                  fork_info:
+                    fork:
+                      previous_version: '0x00000001'
+                      current_version: '0x00000001'
+                      epoch: '1'
+                    genesis_validators_root: '0x04700007fabc8282644aed6d1c7c9e21d38a03a0c4ba193f3afe428824b3a673'
+                  aggregate_and_proof:
+                    version: PHASE0
+                    data:
+                      aggregator_index: '1'
+                      aggregate:
+                        aggregation_bits: '0x00000101'
+                        data:
+                          slot: '0'
+                          index: '0'
+                          beacon_block_root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                          source:
+                            epoch: '0'
+                            root: '0x0000000000000000000000000000000000000000000000000000000000000000'
+                          target:
+                            epoch: '0'
+                            root: '0x100814c335d0ced5014cfa9d2e375e6d9b4e197381f8ce8af0473200fdc917fd'
+                        signature: '0xa627242e4a5853708f4ebf923960fb8192f93f2233cd347e05239d86dd9fb66b721ceec1baeae6647f498c9126074f1101a87854d674b6eebc220fd8c3d8405bdfd8e286b707975d9e00a56ec6cbbf762f23607d490f0bbb16c3e0e483d51875'
+                      selection_proof: '0xa63f73a03f1f42b1fd0a988b614d511eb346d0a91c809694ef76df5ae021f0f144d64e612d735bc8820950cf6f7f84cd0ae194bfe3d4242fe79688f83462e3f69d9d33de71aab0721b7dab9d6960875e5fdfd26b171a75fb51af822043820c47'
+              AGGREGATE_AND_PROOF (DEPRECATED):
                 value:
                   type: AGGREGATE_AND_PROOF
                   signingRoot: '0x8d777156899cb02e0e66217afd832886239752a59a393218f6c603bcf615b4f8'
